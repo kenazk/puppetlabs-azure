@@ -56,6 +56,24 @@
       "metadata": {
         "description": "Fully qualified domain name for Puppet Master."
       }
+    },
+    "department": {
+      "type": "string",
+      "metadata": {
+        "description": "Tag for Department"
+      }
+    },
+    "project": {
+      "type": "string",
+      "metadata": {
+        "description": "Tag for Project"
+      }
+    },
+    "createdby": {
+      "type": "string",
+      "metadata": {
+        "description": "Tag for Created By"
+      }
     }
   },
   "variables": {
@@ -245,6 +263,11 @@
       "name": "[variables('namingInfix')]",
       "location": "[resourceGroup().location]",
       "apiVersion": "[variables('computeApiVersion')]",
+      "tags": {
+        "Department": "[parameters('department')]",
+        "Project": "[parameters('project')]",
+        "Created By": "[parameters('createdby')]"
+      },
       "dependsOn": [
         "storageLoop",
         "[concat('Microsoft.Storage/storageAccounts/', variables('diagnosticsStorageAccountName'))]",
